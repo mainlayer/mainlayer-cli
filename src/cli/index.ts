@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
+import { configCommand } from './config.js';
 
 const program = new Command();
 
@@ -9,7 +10,7 @@ program
   .version('0.1.0')
   .option('--json', 'Output as JSON');
 
-// Commands are registered in subsequent modules (config, auth, wallet, etc.)
+program.addCommand(configCommand());
 
 program.parseAsync(process.argv).catch((err: unknown) => {
   const message = err instanceof Error ? err.message : String(err);
