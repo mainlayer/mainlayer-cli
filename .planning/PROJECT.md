@@ -12,7 +12,12 @@ An AI agent can install `@mainlayer/cli` and autonomously register as a vendor o
 
 ### Validated
 
-(None yet — ship to validate)
+**Phase 1: Foundation (2026-03-25)**
+- `mainlayer auth register` / `login` / `logout` / `status` — JWT auth flow wired
+- `mainlayer auth api-key create/list/revoke` — API key management
+- `mainlayer wallet create/import/address/balance/export` — AES-256-GCM encrypted Solana wallet
+- CLI binary (`mainlayer`) with `--json`, `--api-key`, `--version` global flags
+- Semantic exit codes (0–5), agent-first env-var passphrase support
 
 ### Active
 
@@ -101,4 +106,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-25 after initialization*
+*Last updated: 2026-03-25 after Phase 1 completion*
