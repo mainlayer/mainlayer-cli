@@ -15,6 +15,7 @@
   },
   "scripts": {
     "build": "tsdown",
+    "postinstall": "node dist/postinstall/index.js",
     "test": "vitest run",
     "lint": "eslint src/ tests/"
   },
