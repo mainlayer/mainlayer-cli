@@ -86,8 +86,8 @@ Plans:
   5. The npm package contains only `dist/`, `bin/`, and `README.md`; `npm pack --dry-run` shows no secrets or test fixtures
 **Plans**: 3 plans
 Plans:
-- [ ] 04-01-PLAN.md — Platform registry, postinstall entry point, build pipeline wiring
-- [ ] 04-02-PLAN.md — Skills.md agent guide template and README.md documentation
+- [x] 04-01-PLAN.md — Platform registry, postinstall entry point, build pipeline wiring
+- [x] 04-02-PLAN.md — Skills.md agent guide template and README.md documentation
 - [ ] 04-03-PLAN.md — Setup command, skills dropping integration, npm package verification
 **UI hint**: no
 
@@ -101,4 +101,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 | 1. Foundation | 4/4 | Complete    | 2026-03-25 |
 | 2. Vendor | 5/5 | Complete   | 2026-03-25 |
 | 3. Buyer | 4/4 | Complete   | 2026-03-25 |
-| 4. Onboarding | 0/3 | In progress | - |
+| 4. Onboarding | 2/3 | In Progress|  |
