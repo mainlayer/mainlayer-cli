@@ -237,6 +237,50 @@ export class WalletService {
 
     return { sol, usdc };
   }
+
+  async signTransaction(passphrase: string, unsignedTxB64: string): Promise<string> {
+    const keystore = this.readKeystore();
+    const privateKeyBytes = await this.decryptKeystore(keystore, passphrase);
+    const keyPair = await createKeyPairFromPrivateKeyBytes(privateKeyBytes);
+
+    const txBytes = Buffer.from(unsignedTxB64, 'base64');
+
+    // Single-signer Solana tx wire format:
+    // [compact_u16 sig_count = 0x01][64-byte signature placeholder][message bytes...]
+    // The message portion (everything after byte 65) is what gets signed.
+    // CRITICAL: Do NOT sign the full txBytes — that includes the sig placeholder
+    // and will produce an invalid signature (Pitfall 1 from RESEARCH.md).
+    const SIG_HEADER_BYTES = 65; // 1 (compact_u16 for count=1) + 64 (placeholder)
+    const messageBytes = txBytes.subarray(SIG_HEADER_BYTES);
+
+    const sigBytes = new Uint8Array(
+      await crypto.subtle.sign('Ed25519', keyPair.privateKey, messageBytes),
+    );
+
+    // Replace the 64-byte placeholder signature with the real signature
+    const signedTx = Buffer.from(txBytes);
+    for (let i = 0; i < 64; i++) signedTx[1 + i] = sigBytes[i]!;
+
+    return signedTx.toString('base64');
+  }
+
+  async signMessage(passphrase: string, messageText: string): Promise<string> {
+    const keystore = this.readKeystore();
+    const privateKeyBytes = await this.decryptKeystore(keystore, passphrase);
+    const keyPair = await createKeyPairFromPrivateKeyBytes(privateKeyBytes);
+
+    const msgBytes = new TextEncoder().encode(messageText);
+    const sigBytes = new Uint8Array(
+      await crypto.subtle.sign('Ed25519', keyPair.privateKey, msgBytes),
+    );
+
+    // Encode 64-byte Ed25519 signature as base58.
+    // CRITICAL: Do NOT use getAddressDecoder — that only handles 32-byte arrays.
+    // getBase58Codec handles arbitrary-length byte arrays (Pitfall from RESEARCH.md).
+    const { getBase58Codec } = await import('@solana/kit');
+    const codec = getBase58Codec();
+    return codec.encode(sigBytes);
+  }
 }
 
 export const walletService = new WalletService();
