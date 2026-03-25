@@ -5,6 +5,7 @@ import { walletCommand } from './wallet.js';
 import { configCommand } from './config.js';
 import { webhookCommand } from './webhook.js';
 import { resourceCommand } from './resource.js';
+import { couponCommand } from './coupon.js';
 import { apiClient } from '../services/api-client.js';
 import { printError } from '../utils/output.js';
 import { AppError } from '../utils/errors.js';
@@ -18,7 +19,8 @@ const program = new Command('mainlayer')
   .addCommand(walletCommand())
   .addCommand(configCommand())
   .addCommand(webhookCommand())
-  .addCommand(resourceCommand());
+  .addCommand(resourceCommand())
+  .addCommand(couponCommand());
 
 // Global hook: propagate --api-key to ApiClient before any subcommand action
 program.hook('preAction', () => {
