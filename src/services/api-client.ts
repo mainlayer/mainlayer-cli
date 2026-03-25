@@ -35,7 +35,17 @@ export class ApiClient {
       const body = await err.response
         .json()
         .catch(() => ({ error: 'Unknown error' })) as ApiErrorResponse;
-      const msg = body.message ?? body.error ?? `HTTP ${err.response.status}`;
+      const detail = body.detail;
+      let msg: string;
+      if (body.message) {
+        msg = body.message;
+      } else if (body.error) {
+        msg = body.error;
+      } else if (Array.isArray(detail)) {
+        msg = detail.map((d: { msg: string }) => d.msg).join('; ');
+      } else {
+        msg = `HTTP ${err.response.status}`;
+      }
       const status = err.response.status;
       if (status === 401) throw new AppError(msg, EXIT_CODES.AUTH_ERROR);
       if (status === 404) throw new AppError(msg, EXIT_CODES.NOT_FOUND);
@@ -54,9 +64,25 @@ export class ApiClient {
     }
   }
 
-  async get<T>(path: string): Promise<T> {
+  async put<T>(path: string, body?: unknown): Promise<T> {
     try {
-      return await this.createHttp().get(path).json<T>();
+      return await this.createHttp().put(path, { json: body }).json<T>();
+    } catch (err) {
+      return this.handleError(err);
+    }
+  }
+
+  async patch<T>(path: string, body?: unknown): Promise<T> {
+    try {
+      return await this.createHttp().patch(path, { json: body }).json<T>();
+    } catch (err) {
+      return this.handleError(err);
+    }
+  }
+
+  async get<T>(path: string, searchParams?: Record<string, string>): Promise<T> {
+    try {
+      return await this.createHttp().get(path, searchParams ? { searchParams } : undefined).json<T>();
     } catch (err) {
       return this.handleError(err);
     }
