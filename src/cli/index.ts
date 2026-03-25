@@ -8,6 +8,13 @@ import { resourceCommand } from './resource.js';
 import { couponCommand } from './coupon.js';
 import { earningsCommand } from './earnings.js';
 import { metricsCommand } from './metrics.js';
+import { discoverCommand } from './discover.js';
+import { buyCommand } from './buy.js';
+import { entitlementsCommand } from './entitlements.js';
+import { subscribeCommand } from './subscribe.js';
+import { invoicesCommand } from './invoices.js';
+import { refundCommand } from './refund.js';
+import { disputeCommand } from './dispute.js';
 import { apiClient } from '../services/api-client.js';
 import { printError } from '../utils/output.js';
 import { AppError } from '../utils/errors.js';
@@ -24,7 +31,14 @@ const program = new Command('mainlayer')
   .addCommand(resourceCommand())
   .addCommand(couponCommand())
   .addCommand(earningsCommand())
-  .addCommand(metricsCommand());
+  .addCommand(metricsCommand())
+  .addCommand(discoverCommand())
+  .addCommand(buyCommand())
+  .addCommand(entitlementsCommand())
+  .addCommand(subscribeCommand())
+  .addCommand(invoicesCommand())
+  .addCommand(refundCommand())
+  .addCommand(disputeCommand());
 
 // Global hook: propagate --api-key to ApiClient before any subcommand action
 program.hook('preAction', () => {
