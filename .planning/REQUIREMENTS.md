@@ -12,17 +12,17 @@
 - [x] **INFRA-03**: CLI exits with semantic codes: 0 = success, 1 = general error, 2 = auth error, 3 = not found, 4 = validation error, 5 = already exists
 - [x] **INFRA-04**: Config is stored at `~/.mainlayer/config.json` and readable/writable via `mainlayer config get/set`
 - [x] **INFRA-05**: API base URL is configurable via `MAINLAYER_API_URL` env var (default: production URL when decided)
-- [ ] **INFRA-06**: All commands support `--api-key` flag and `MAINLAYER_API_KEY` env var as auth override
+- [x] **INFRA-06**: All commands support `--api-key` flag and `MAINLAYER_API_KEY` env var as auth override
 
 ### Authentication
 
-- [ ] **AUTH-01**: User can register a new account with email and password (`mainlayer auth register`)
-- [ ] **AUTH-02**: User can log in with email and password, JWT stored in config (`mainlayer auth login`)
-- [ ] **AUTH-03**: User can log out, clearing stored credentials (`mainlayer auth logout`)
-- [ ] **AUTH-04**: User can view current auth status (`mainlayer auth status`)
-- [ ] **AUTH-05**: User can create a new API key with a label (`mainlayer auth api-key create`)
-- [ ] **AUTH-06**: User can list all active API keys (`mainlayer auth api-key list`)
-- [ ] **AUTH-07**: User can revoke an API key by ID (`mainlayer auth api-key revoke`)
+- [x] **AUTH-01**: User can register a new account with email and password (`mainlayer auth register`)
+- [x] **AUTH-02**: User can log in with email and password, JWT stored in config (`mainlayer auth login`)
+- [x] **AUTH-03**: User can log out, clearing stored credentials (`mainlayer auth logout`)
+- [x] **AUTH-04**: User can view current auth status (`mainlayer auth status`)
+- [x] **AUTH-05**: User can create a new API key with a label (`mainlayer auth api-key create`)
+- [x] **AUTH-06**: User can list all active API keys (`mainlayer auth api-key list`)
+- [x] **AUTH-07**: User can revoke an API key by ID (`mainlayer auth api-key revoke`)
 
 ### Wallet
 
@@ -126,14 +126,14 @@
 | INFRA-03 | Phase 1 | Complete |
 | INFRA-04 | Phase 1 | Complete |
 | INFRA-05 | Phase 1 | Complete |
-| INFRA-06 | Phase 1 | Pending |
-| AUTH-01 | Phase 1 | Pending |
-| AUTH-02 | Phase 1 | Pending |
-| AUTH-03 | Phase 1 | Pending |
-| AUTH-04 | Phase 1 | Pending |
-| AUTH-05 | Phase 1 | Pending |
-| AUTH-06 | Phase 1 | Pending |
-| AUTH-07 | Phase 1 | Pending |
+| INFRA-06 | Phase 1 | Complete |
+| AUTH-01 | Phase 1 | Complete |
+| AUTH-02 | Phase 1 | Complete |
+| AUTH-03 | Phase 1 | Complete |
+| AUTH-04 | Phase 1 | Complete |
+| AUTH-05 | Phase 1 | Complete |
+| AUTH-06 | Phase 1 | Complete |
+| AUTH-07 | Phase 1 | Complete |
 | WALL-01 | Phase 1 | Pending |
 | WALL-02 | Phase 1 | Pending |
 | WALL-03 | Phase 1 | Pending |
