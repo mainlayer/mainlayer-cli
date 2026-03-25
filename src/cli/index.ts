@@ -2,6 +2,7 @@
 import { Command } from 'commander';
 import { configCommand } from './config.js';
 import { authCommand } from './auth.js';
+import { walletCommand } from './wallet.js';
 
 const program = new Command();
 
@@ -13,6 +14,7 @@ program
 
 program.addCommand(configCommand());
 program.addCommand(authCommand());
+program.addCommand(walletCommand());
 
 program.parseAsync(process.argv).catch((err: unknown) => {
   const message = err instanceof Error ? err.message : String(err);
