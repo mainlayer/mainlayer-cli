@@ -7,11 +7,11 @@
 
 ### Infrastructure & CLI Foundation
 
-- [ ] **INFRA-01**: CLI project is bootstrapped as ESM TypeScript package with tsdown build, Commander.js 14 command structure, and `mainlayer` binary
-- [ ] **INFRA-02**: All commands output machine-readable JSON when `--json` flag is set or stdout is not a TTY
-- [ ] **INFRA-03**: CLI exits with semantic codes: 0 = success, 1 = general error, 2 = auth error, 3 = not found, 4 = validation error, 5 = already exists
-- [ ] **INFRA-04**: Config is stored at `~/.mainlayer/config.json` and readable/writable via `mainlayer config get/set`
-- [ ] **INFRA-05**: API base URL is configurable via `MAINLAYER_API_URL` env var (default: production URL when decided)
+- [x] **INFRA-01**: CLI project is bootstrapped as ESM TypeScript package with tsdown build, Commander.js 14 command structure, and `mainlayer` binary
+- [x] **INFRA-02**: All commands output machine-readable JSON when `--json` flag is set or stdout is not a TTY
+- [x] **INFRA-03**: CLI exits with semantic codes: 0 = success, 1 = general error, 2 = auth error, 3 = not found, 4 = validation error, 5 = already exists
+- [x] **INFRA-04**: Config is stored at `~/.mainlayer/config.json` and readable/writable via `mainlayer config get/set`
+- [x] **INFRA-05**: API base URL is configurable via `MAINLAYER_API_URL` env var (default: production URL when decided)
 - [ ] **INFRA-06**: All commands support `--api-key` flag and `MAINLAYER_API_KEY` env var as auth override
 
 ### Authentication
@@ -121,11 +121,11 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INFRA-01 | Phase 1 | Pending |
-| INFRA-02 | Phase 1 | Pending |
-| INFRA-03 | Phase 1 | Pending |
-| INFRA-04 | Phase 1 | Pending |
-| INFRA-05 | Phase 1 | Pending |
+| INFRA-01 | Phase 1 | Complete |
+| INFRA-02 | Phase 1 | Complete |
+| INFRA-03 | Phase 1 | Complete |
+| INFRA-04 | Phase 1 | Complete |
+| INFRA-05 | Phase 1 | Complete |
 | INFRA-06 | Phase 1 | Pending |
 | AUTH-01 | Phase 1 | Pending |
 | AUTH-02 | Phase 1 | Pending |

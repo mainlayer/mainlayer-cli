@@ -2,16 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: planning
-stopped_at: Phase 1 context gathered
-last_updated: "2026-03-25T13:08:14.666Z"
-last_activity: 2026-03-25 — Roadmap created; phases derived from 46 v1 requirements
+status: Ready to execute
+stopped_at: Completed 01-foundation/01-01-PLAN.md
+last_updated: "2026-03-25T13:37:35.737Z"
 progress:
   total_phases: 4
   completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
-  percent: 0
+  total_plans: 4
+  completed_plans: 1
 ---
 
 # Project State
@@ -21,16 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-25)
 
 **Core value:** An AI agent can install `@mainlayer/cli` and autonomously register as a vendor or buyer, sign on-chain transactions, and transact on Mainlayer — with zero human intervention.
-**Current focus:** Phase 1 — Foundation
+**Current focus:** Phase 01 — foundation
 
 ## Current Position
 
-Phase: 1 of 4 (Foundation)
-Plan: 0 of TBD in current phase
-Status: Ready to plan
-Last activity: 2026-03-25 — Roadmap created; phases derived from 46 v1 requirements
-
-Progress: [░░░░░░░░░░] 0%
+Phase: 01 (foundation) — EXECUTING
+Plan: 2 of 4
 
 ## Performance Metrics
 
@@ -52,6 +46,7 @@ Progress: [░░░░░░░░░░] 0%
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 01-foundation P01 | 5 | 2 tasks | 19 files |
 
 ## Accumulated Context
 
@@ -64,6 +59,9 @@ Recent decisions affecting current work:
 - [Init]: AES-256-GCM + PBKDF2 200k iterations for wallet encryption — use Node.js built-in crypto only
 - [Init]: Postinstall must wrap all writes in try/catch and always exit 0 — supply chain scrutiny is high
 - [Init]: Phase 3 (X402 payment) and Phase 5 (MCP Windows paths) flagged for deeper research during planning
+- [Phase 01-foundation]: Use @solana/kit@6.5.0 (latest canonical from Anza); signing APIs unchanged from 3.x
+- [Phase 01-foundation]: ConfigService accepts optional cwd for test isolation
+- [Phase 01-foundation]: printSuccess uses stderr to keep stdout clean for JSON piping (D-08)
 
 ### Pending Todos
 
@@ -76,6 +74,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-25T13:08:14.656Z
-Stopped at: Phase 1 context gathered
+Last session: 2026-03-25T13:37:35.734Z
+Stopped at: Completed 01-foundation/01-01-PLAN.md
 Resume file: None

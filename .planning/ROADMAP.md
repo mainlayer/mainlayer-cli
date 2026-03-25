@@ -31,7 +31,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   5. Every command exits with the correct semantic exit code (0-5) and produces valid JSON when `--json` is set or stdout is not a TTY
 **Plans**: 4 plans
 Plans:
-- [ ] 01-01-PLAN.md — Project scaffold, types, utilities, ConfigService, config command
+- [x] 01-01-PLAN.md — Project scaffold, types, utilities, ConfigService, config command
 - [ ] 01-02-PLAN.md — WalletService and wallet CLI commands
 - [ ] 01-03-PLAN.md — ApiClient and auth CLI commands
 - [ ] 01-04-PLAN.md — CLI entry point wiring, global flags, smoke tests, end-to-end verification
