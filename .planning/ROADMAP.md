@@ -12,7 +12,7 @@ Build a TypeScript CLI that lets AI agents autonomously register, pay, and trans
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation** - Bootstrapped TypeScript project with CLI infrastructure, encrypted Solana wallet, and full auth/API-key management
+- [x] **Phase 1: Foundation** - Bootstrapped TypeScript project with CLI infrastructure, encrypted Solana wallet, and full auth/API-key management (completed 2026-03-25)
 - [ ] **Phase 2: Vendor** - Complete vendor surface — resource CRUD, pricing plans, quotas, coupons, webhooks, earnings, and metrics
 - [ ] **Phase 3: Buyer** - Complete buyer surface — resource discovery, X402 on-chain payment, subscription lifecycle, and post-purchase operations
 - [ ] **Phase 4: Onboarding** - MCP auto-configuration on install, skills.md agent guide, and npm package hardening for public release
@@ -34,7 +34,7 @@ Plans:
 - [x] 01-01-PLAN.md — Project scaffold, types, utilities, ConfigService, config command
 - [x] 01-02-PLAN.md — WalletService and wallet CLI commands
 - [x] 01-03-PLAN.md — ApiClient and auth CLI commands
-- [ ] 01-04-PLAN.md — CLI entry point wiring, global flags, smoke tests, end-to-end verification
+- [x] 01-04-PLAN.md — CLI entry point wiring, global flags, smoke tests, end-to-end verification
 **UI hint**: no
 
 ### Phase 2: Vendor
@@ -80,7 +80,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 3/4 | In Progress|  |
+| 1. Foundation | 4/4 | Complete   | 2026-03-25 |
 | 2. Vendor | 0/TBD | Not started | - |
 | 3. Buyer | 0/TBD | Not started | - |
 | 4. Onboarding | 0/TBD | Not started | - |
