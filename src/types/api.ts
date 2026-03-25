@@ -126,3 +126,86 @@ export interface MetricsResponse {
   quota_calls?: number;
   buyers_over_quota?: number;
 }
+
+// --- Buyer types (Phase 3) ---
+
+export interface DiscoverResult {
+  id: string;
+  slug: string;
+  description: string;
+  price_usdc: number;
+  fee_model: string;
+  type: string;
+  credits_per_payment: number | null;
+  duration_seconds: number | null;
+  plans: Array<{
+    name: string;
+    price_usdc: number;
+    fee_model: string;
+    duration_seconds: number | null;
+  }>;
+}
+
+export interface PrepareResponse {
+  unsigned_transaction: string;
+  amount_usdc: number;
+  original_price_usdc: number;
+  discount_usdc: number;
+  fee_usdc: number;
+  net_vendor_usdc: number;
+  expires_in_seconds: number | null;
+}
+
+export interface PayResponse {
+  tx_hash: string;
+  entitlement_id: string;
+  resource_id: string;
+  amount_usdc: number;
+  status: string;
+}
+
+export interface Entitlement {
+  resource_id: string;
+  resource_slug: string;
+  status: string;
+  expires_at: string | null;
+  remaining_credits: number | null;
+}
+
+export interface SubscriptionApproval {
+  approval_id: string;
+  resource_id: string;
+  plan_name: string | null;
+  max_renewals: number;
+  renewals_used: number;
+  chain: string;
+  status: string;
+  created_at: string;
+}
+
+export interface InvoiceResponse {
+  id: string;
+  resource_id: string;
+  resource_slug?: string;
+  amount_usdc: number;
+  status: string;
+  created_at: string;
+}
+
+export interface RefundResponse {
+  id: string;
+  payment_id: string;
+  amount_usdc: number;
+  reason?: string;
+  status: string;
+  created_at: string;
+}
+
+export interface DisputeResponse {
+  dispute_id: string;
+  payment_id: string;
+  reason: string;
+  status: string;
+  payer_wallet?: string;
+  created_at?: string;
+}
