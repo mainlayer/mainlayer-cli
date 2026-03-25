@@ -28,8 +28,13 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. `mainlayer wallet create` generates an AES-256-GCM encrypted keypair at `~/.mainlayer/wallet.json`; `mainlayer wallet address` prints the public key; `mainlayer wallet balance` shows SOL and USDC balances
   3. `mainlayer auth register` and `mainlayer auth login` complete without prompts when credentials are provided via flags or env vars; JWT is persisted in config
   4. `mainlayer auth api-key create/list/revoke` manage API keys; `mainlayer auth status` shows current identity
-  5. Every command exits with the correct semantic exit code (0–5) and produces valid JSON when `--json` is set or stdout is not a TTY
-**Plans**: TBD
+  5. Every command exits with the correct semantic exit code (0-5) and produces valid JSON when `--json` is set or stdout is not a TTY
+**Plans**: 4 plans
+Plans:
+- [ ] 01-01-PLAN.md — Project scaffold, types, utilities, ConfigService, config command
+- [ ] 01-02-PLAN.md — WalletService and wallet CLI commands
+- [ ] 01-03-PLAN.md — ApiClient and auth CLI commands
+- [ ] 01-04-PLAN.md — CLI entry point wiring, global flags, smoke tests, end-to-end verification
 **UI hint**: no
 
 ### Phase 2: Vendor
@@ -71,11 +76,11 @@ Decimal phases appear between their surrounding integers in numeric order.
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/TBD | Not started | - |
+| 1. Foundation | 0/4 | Planning complete | - |
 | 2. Vendor | 0/TBD | Not started | - |
 | 3. Buyer | 0/TBD | Not started | - |
 | 4. Onboarding | 0/TBD | Not started | - |
