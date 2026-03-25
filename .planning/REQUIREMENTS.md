@@ -26,13 +26,13 @@
 
 ### Wallet
 
-- [ ] **WALL-01**: User can generate a new Solana keypair stored AES-256-GCM + PBKDF2 encrypted at `~/.mainlayer/wallet.json` (`mainlayer wallet create`)
-- [ ] **WALL-02**: User can import an existing Solana keypair from base58 private key or 12/24-word mnemonic (`mainlayer wallet import`)
-- [ ] **WALL-03**: User can view their Solana public key and optional EVM address (`mainlayer wallet address`)
-- [ ] **WALL-04**: User can view SOL balance and USDC balance on Solana (and ETH + USDC on EVM if key configured) (`mainlayer wallet balance`)
-- [ ] **WALL-05**: User can export their private key after passphrase confirmation (`mainlayer wallet export`)
-- [ ] **WALL-06**: Wallet passphrase is accepted via `MAINLAYER_WALLET_PASSPHRASE` env var for headless/agent operation
-- [ ] **WALL-07**: Wallet is only decrypted at signing time (lazy decryption), never at startup
+- [x] **WALL-01**: User can generate a new Solana keypair stored AES-256-GCM + PBKDF2 encrypted at `~/.mainlayer/wallet.json` (`mainlayer wallet create`)
+- [x] **WALL-02**: User can import an existing Solana keypair from base58 private key or 12/24-word mnemonic (`mainlayer wallet import`)
+- [x] **WALL-03**: User can view their Solana public key and optional EVM address (`mainlayer wallet address`)
+- [x] **WALL-04**: User can view SOL balance and USDC balance on Solana (and ETH + USDC on EVM if key configured) (`mainlayer wallet balance`)
+- [x] **WALL-05**: User can export their private key after passphrase confirmation (`mainlayer wallet export`)
+- [x] **WALL-06**: Wallet passphrase is accepted via `MAINLAYER_WALLET_PASSPHRASE` env var for headless/agent operation
+- [x] **WALL-07**: Wallet is only decrypted at signing time (lazy decryption), never at startup
 
 ### Vendor — Resource Management
 
@@ -134,13 +134,13 @@
 | AUTH-05 | Phase 1 | Complete |
 | AUTH-06 | Phase 1 | Complete |
 | AUTH-07 | Phase 1 | Complete |
-| WALL-01 | Phase 1 | Pending |
-| WALL-02 | Phase 1 | Pending |
-| WALL-03 | Phase 1 | Pending |
-| WALL-04 | Phase 1 | Pending |
-| WALL-05 | Phase 1 | Pending |
-| WALL-06 | Phase 1 | Pending |
-| WALL-07 | Phase 1 | Pending |
+| WALL-01 | Phase 1 | Complete |
+| WALL-02 | Phase 1 | Complete |
+| WALL-03 | Phase 1 | Complete |
+| WALL-04 | Phase 1 | Complete |
+| WALL-05 | Phase 1 | Complete |
+| WALL-06 | Phase 1 | Complete |
+| WALL-07 | Phase 1 | Complete |
 | VEND-01 | Phase 2 | Pending |
 | VEND-02 | Phase 2 | Pending |
 | VEND-03 | Phase 2 | Pending |

@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 01-foundation/01-03-PLAN.md
-last_updated: "2026-03-25T13:43:04.371Z"
+stopped_at: Completed 01-foundation/01-02-PLAN.md
+last_updated: "2026-03-25T13:45:55.061Z"
 progress:
   total_phases: 4
   completed_phases: 0
   total_plans: 4
-  completed_plans: 2
+  completed_plans: 3
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-25)
 ## Current Position
 
 Phase: 01 (foundation) — EXECUTING
-Plan: 3 of 4
+Plan: 4 of 4
 
 ## Performance Metrics
 
@@ -48,6 +48,7 @@ Plan: 3 of 4
 *Updated after each plan completion*
 | Phase 01-foundation P01 | 5 | 2 tasks | 19 files |
 | Phase 01-foundation P03 | 186 | 2 tasks | 4 files |
+| Phase 01-foundation P02 | 4 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -65,6 +66,8 @@ Recent decisions affecting current work:
 - [Phase 01-foundation]: printSuccess uses stderr to keep stdout clean for JSON piping (D-08)
 - [Phase 01-foundation]: ApiClient uses ky.extend creating fresh instance per request so prefixUrl always reflects current config
 - [Phase 01-foundation]: auth logout selectively clears jwt/jwtExpiresAt/userId/email — preserves apiUrl in config
+- [Phase 01-foundation]: Use getAddressDecoder/Encoder from @solana/kit for 32-byte base58 encoding of private keys — same codec as addresses
+- [Phase 01-foundation]: WalletService constructor accepts optional walletPath for test isolation without mocking
 
 ### Pending Todos
 
@@ -77,6 +80,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-25T13:43:04.368Z
-Stopped at: Completed 01-foundation/01-03-PLAN.md
+Last session: 2026-03-25T13:45:55.058Z
+Stopped at: Completed 01-foundation/01-02-PLAN.md
 Resume file: None
