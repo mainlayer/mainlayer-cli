@@ -7,6 +7,8 @@ import { formatOutput, printTable, truncate, printError } from '../utils/output.
 import { parsePrice, formatPrice } from '../utils/price.js';
 import { AppError, EXIT_CODES } from '../utils/errors.js';
 import type { ResourceResponse, ResourceCreate } from '../types/api.js';
+import { buildPlanCommand } from './resource-plans.js';
+import { buildQuotaCommand } from './resource-quota.js';
 
 type ResourceType = 'api' | 'file' | 'endpoint' | 'page';
 type FeeModel = 'one_time' | 'subscription' | 'pay_per_call' | 'hybrid';
@@ -371,6 +373,9 @@ export function resourceCommand(): Command {
         }
       }
     });
+
+  resource.addCommand(buildPlanCommand());
+  resource.addCommand(buildQuotaCommand());
 
   return resource;
 }
