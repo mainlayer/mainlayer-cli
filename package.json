@@ -1,0 +1,57 @@
+{
+  "name": "@mainlayer/cli",
+  "version": "0.1.0",
+  "description": "Command-line interface to the Mainlayer payment infrastructure",
+  "type": "module",
+  "bin": {
+    "mainlayer": "./dist/cli/index.js"
+  },
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "test": "vitest run",
+    "lint": "eslint src/ tests/"
+  },
+  "keywords": [
+    "mainlayer",
+    "cli",
+    "solana",
+    "payments",
+    "x402"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mainlayer/mainlayer-cli.git"
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.1.0",
+    "@scure/bip39": "^2.0.1",
+    "@solana-program/token": "^0.12.0",
+    "@solana/kit": "^6.5.0",
+    "chalk": "^5.6.2",
+    "commander": "^14.0.3",
+    "conf": "^15.1.0",
+    "ky": "^1.14.3",
+    "ora": "^9.3.0",
+    "viem": "^2.47.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "@typescript-eslint/eslint-plugin": "^8.57.2",
+    "@typescript-eslint/parser": "^8.57.2",
+    "eslint": "^10.1.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.8.1",
+    "tsdown": "^0.21.5",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.1"
+  }
+}
