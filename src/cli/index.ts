@@ -3,6 +3,7 @@ import { Command } from 'commander';
 import { authCommand } from './auth.js';
 import { walletCommand } from './wallet.js';
 import { configCommand } from './config.js';
+import { webhookCommand } from './webhook.js';
 import { apiClient } from '../services/api-client.js';
 import { printError } from '../utils/output.js';
 import { AppError } from '../utils/errors.js';
@@ -14,7 +15,8 @@ const program = new Command('mainlayer')
   .option('--api-key <key>', 'API key override (also: MAINLAYER_API_KEY env)', process.env['MAINLAYER_API_KEY'])
   .addCommand(authCommand())
   .addCommand(walletCommand())
-  .addCommand(configCommand());
+  .addCommand(configCommand())
+  .addCommand(webhookCommand());
 
 // Global hook: propagate --api-key to ApiClient before any subcommand action
 program.hook('preAction', () => {
