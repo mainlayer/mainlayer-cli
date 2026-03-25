@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
 import { configCommand } from './config.js';
+import { authCommand } from './auth.js';
 
 const program = new Command();
 
@@ -11,6 +12,7 @@ program
   .option('--json', 'Output as JSON');
 
 program.addCommand(configCommand());
+program.addCommand(authCommand());
 
 program.parseAsync(process.argv).catch((err: unknown) => {
   const message = err instanceof Error ? err.message : String(err);
