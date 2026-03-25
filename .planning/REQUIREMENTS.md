@@ -119,25 +119,63 @@
 
 ## Traceability
 
-*(Populated during roadmap creation)*
-
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INFRA-01 through INFRA-06 | — | Pending |
-| AUTH-01 through AUTH-07 | — | Pending |
-| WALL-01 through WALL-07 | — | Pending |
-| VEND-01 through VEND-10 | — | Pending |
-| ANAL-01 through ANAL-02 | — | Pending |
-| BUYR-01 through BUYR-03 | — | Pending |
-| SUBS-01 through SUBS-05 | — | Pending |
-| POST-01 through POST-04 | — | Pending |
-| INST-01 through INST-05 | — | Pending |
+| INFRA-01 | Phase 1 | Pending |
+| INFRA-02 | Phase 1 | Pending |
+| INFRA-03 | Phase 1 | Pending |
+| INFRA-04 | Phase 1 | Pending |
+| INFRA-05 | Phase 1 | Pending |
+| INFRA-06 | Phase 1 | Pending |
+| AUTH-01 | Phase 1 | Pending |
+| AUTH-02 | Phase 1 | Pending |
+| AUTH-03 | Phase 1 | Pending |
+| AUTH-04 | Phase 1 | Pending |
+| AUTH-05 | Phase 1 | Pending |
+| AUTH-06 | Phase 1 | Pending |
+| AUTH-07 | Phase 1 | Pending |
+| WALL-01 | Phase 1 | Pending |
+| WALL-02 | Phase 1 | Pending |
+| WALL-03 | Phase 1 | Pending |
+| WALL-04 | Phase 1 | Pending |
+| WALL-05 | Phase 1 | Pending |
+| WALL-06 | Phase 1 | Pending |
+| WALL-07 | Phase 1 | Pending |
+| VEND-01 | Phase 2 | Pending |
+| VEND-02 | Phase 2 | Pending |
+| VEND-03 | Phase 2 | Pending |
+| VEND-04 | Phase 2 | Pending |
+| VEND-05 | Phase 2 | Pending |
+| VEND-06 | Phase 2 | Pending |
+| VEND-07 | Phase 2 | Pending |
+| VEND-08 | Phase 2 | Pending |
+| VEND-09 | Phase 2 | Pending |
+| VEND-10 | Phase 2 | Pending |
+| ANAL-01 | Phase 2 | Pending |
+| ANAL-02 | Phase 2 | Pending |
+| BUYR-01 | Phase 3 | Pending |
+| BUYR-02 | Phase 3 | Pending |
+| BUYR-03 | Phase 3 | Pending |
+| SUBS-01 | Phase 3 | Pending |
+| SUBS-02 | Phase 3 | Pending |
+| SUBS-03 | Phase 3 | Pending |
+| SUBS-04 | Phase 3 | Pending |
+| SUBS-05 | Phase 3 | Pending |
+| POST-01 | Phase 3 | Pending |
+| POST-02 | Phase 3 | Pending |
+| POST-03 | Phase 3 | Pending |
+| POST-04 | Phase 3 | Pending |
+| INST-01 | Phase 4 | Pending |
+| INST-02 | Phase 4 | Pending |
+| INST-03 | Phase 4 | Pending |
+| INST-04 | Phase 4 | Pending |
+| INST-05 | Phase 4 | Pending |
 
 **Coverage:**
 - v1 requirements: 46 total
-- Mapped to phases: 0 (pending roadmap)
-- Unmapped: 46 ⚠️
+- Mapped to phases: 46
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-03-25*
-*Last updated: 2026-03-25 after initial definition*
+*Last updated: 2026-03-25 after roadmap creation*
