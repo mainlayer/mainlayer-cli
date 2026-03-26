@@ -104,7 +104,7 @@ describe('config command', () => {
 
       expect(configService.delete).not.toHaveBeenCalled();
       expect(stderrLines.join('')).toMatch(/Unknown config key/);
-      expect(process.exitCode).toBe(2); // VALIDATION_ERROR exit code
+      expect(process.exitCode).toBe(4); // VALIDATION_ERROR exit code
     });
   });
 });

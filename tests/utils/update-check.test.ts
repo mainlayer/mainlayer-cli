@@ -16,17 +16,6 @@ vi.mock('../../src/services/config-service.js', () => ({
 import latestVersion from 'latest-version';
 import { configService } from '../../src/services/config-service.js';
 
-// We import after mocks are set up
-const importCheckForUpdates = async () => {
-  vi.resetModules();
-  vi.mock('latest-version', () => ({ default: vi.fn() }));
-  vi.mock('../../src/services/config-service.js', () => ({
-    configService: { get: vi.fn(), set: vi.fn() },
-  }));
-  const mod = await import('../../src/utils/update-check.js');
-  return mod.checkForUpdates;
-};
-
 describe('checkForUpdates', () => {
   let originalIsTTY: boolean | undefined;
   let originalNoUpdateNotifier: string | undefined;
