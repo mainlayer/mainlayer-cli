@@ -1,6 +1,9 @@
 import { Command } from 'commander';
 import ora from 'ora';
 import * as clack from '@clack/prompts';
+import { readdirSync } from 'node:fs';
+import { homedir } from 'node:os';
+import { join } from 'node:path';
 import { apiClient } from '../services/api-client.js';
 import { configService } from '../services/config-service.js';
 import { getCredentials } from '../utils/prompt.js';
@@ -224,6 +227,44 @@ export function authCommand(): Command {
     });
 
   auth.addCommand(apiKey);
+
+  // auth switch <profile>
+  auth
+    .command('switch <profile>')
+    .description('Switch to a named profile')
+    .option('--json', 'Output as JSON')
+    .action((profile: string, opts: { json?: boolean }) => {
+      configService.setActiveProfile(profile);
+      const json = opts.json ?? !process.stdout.isTTY;
+      formatOutput({ activeProfile: profile }, { json });
+      if (process.stdout.isTTY && !json) {
+        clack.outro(`Switched to profile: ${profile}`);
+      }
+    });
+
+  // auth list
+  auth
+    .command('list')
+    .description('List all profiles')
+    .option('--json', 'Output as JSON')
+    .action((opts: { json?: boolean }) => {
+      let profiles: string[] = ['default'];
+      try {
+        const dir = join(homedir(), '.mainlayer');
+        const files = readdirSync(dir).filter(
+          (f) => f === 'config.json' || /^config\..+\.json$/.test(f),
+        );
+        profiles = files.map((f) =>
+          f === 'config.json' ? 'default' : f.replace(/^config\./, '').replace(/\.json$/, ''),
+        );
+        if (!profiles.includes('default')) profiles.unshift('default');
+      } catch {
+        // Directory doesn't exist yet — return just ['default']
+      }
+      const active = configService.getActiveProfile();
+      const json = opts.json ?? !process.stdout.isTTY;
+      formatOutput({ profiles, active }, { json });
+    });
 
   return auth;
 }
