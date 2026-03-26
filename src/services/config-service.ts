@@ -41,7 +41,7 @@ export class ConfigService {
     return (
       this.get('apiUrl') ??
       process.env['MAINLAYER_API_URL'] ??
-      'https://api.mainlayer.io'
+      'https://api.mainlayer.fr'
     );
   }
 

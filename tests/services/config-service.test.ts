@@ -76,10 +76,10 @@ describe('ConfigService', () => {
       expect(svc.getApiUrl()).toBe('https://env.example.com');
     });
 
-    it('falls back to default https://api.mainlayer.io when neither config nor env set', () => {
+    it('falls back to default https://api.mainlayer.fr when neither config nor env set', () => {
       const svc = makeService();
       delete process.env['MAINLAYER_API_URL'];
-      expect(svc.getApiUrl()).toBe('https://api.mainlayer.io');
+      expect(svc.getApiUrl()).toBe('https://api.mainlayer.fr');
     });
 
     it('config value takes precedence over env var', () => {
