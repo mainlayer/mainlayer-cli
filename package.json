@@ -28,7 +28,7 @@
     "x402"
   ],
   "author": "",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mainlayer/mainlayer-cli.git"
