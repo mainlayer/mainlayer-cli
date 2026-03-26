@@ -77,7 +77,7 @@
 
 - [x] **INST-01**: npm postinstall script detects AI platform config dirs (Claude Desktop, Claude Code, Cursor, Windsurf, Gemini CLI, VS Code, Zed, Continue) and registers the Mainlayer MCP server; exits 0 even when no platforms are detected
 - [x] **INST-02**: postinstall is fully idempotent — running twice does not duplicate MCP registrations
-- [ ] **INST-03**: `mainlayer setup` command re-runs platform detection and MCP registration manually
+- [x] **INST-03**: `mainlayer setup` command re-runs platform detection and MCP registration manually
 - [x] **INST-04**: A `skills.md` file is dropped into each detected AI platform's config directory on install, describing all CLI commands and their usage for AI agents
 - [x] **INST-05**: README and GitHub documentation cover: quickstart for vendors, quickstart for buyers, wallet security model, MCP setup, and full CLI command reference
 
@@ -167,7 +167,7 @@
 | POST-04 | Phase 3 | Complete |
 | INST-01 | Phase 4 | Complete |
 | INST-02 | Phase 4 | Complete |
-| INST-03 | Phase 4 | Pending |
+| INST-03 | Phase 4 | Complete |
 | INST-04 | Phase 4 | Complete |
 | INST-05 | Phase 4 | Complete |
 

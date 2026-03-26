@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Foundation** - Bootstrapped TypeScript project with CLI infrastructure, encrypted Solana wallet, and full auth/API-key management (completed 2026-03-25)
 - [x] **Phase 2: Vendor** - Complete vendor surface — resource CRUD, pricing plans, quotas, coupons, webhooks, earnings, and metrics (completed 2026-03-25)
 - [x] **Phase 3: Buyer** - Complete buyer surface — resource discovery, X402 on-chain payment, subscription lifecycle, and post-purchase operations (completed 2026-03-25)
-- [ ] **Phase 4: Onboarding** - MCP auto-configuration on install, skills.md agent guide, and npm package hardening for public release
+- [x] **Phase 4: Onboarding** - MCP auto-configuration on install, skills.md agent guide, and npm package hardening for public release (completed 2026-03-26)
 
 ## Phase Details
 
@@ -88,7 +88,7 @@ Plans:
 Plans:
 - [x] 04-01-PLAN.md — Platform registry, postinstall entry point, build pipeline wiring
 - [x] 04-02-PLAN.md — Skills.md agent guide template and README.md documentation
-- [ ] 04-03-PLAN.md — Setup command, skills dropping integration, npm package verification
+- [x] 04-03-PLAN.md — Setup command, skills dropping integration, npm package verification
 **UI hint**: no
 
 ## Progress
@@ -101,4 +101,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 | 1. Foundation | 4/4 | Complete    | 2026-03-25 |
 | 2. Vendor | 5/5 | Complete   | 2026-03-25 |
 | 3. Buyer | 4/4 | Complete   | 2026-03-25 |
-| 4. Onboarding | 2/3 | In Progress|  |
+| 4. Onboarding | 3/3 | Complete   | 2026-03-26 |

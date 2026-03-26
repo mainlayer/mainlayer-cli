@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Ready to execute
-stopped_at: Completed 04-onboarding/04-01-PLAN.md
-last_updated: "2026-03-25T20:50:57.992Z"
+status: Phase complete — ready for verification
+stopped_at: Completed 04-onboarding/04-03-PLAN.md
+last_updated: "2026-03-26T05:54:36.255Z"
 progress:
   total_phases: 4
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 16
-  completed_plans: 15
+  completed_plans: 16
 ---
 
 # Project State
@@ -61,6 +61,7 @@ Plan: 3 of 3
 | Phase 03-buyer P04 | 1 | 2 tasks | 4 files |
 | Phase 04-onboarding P02 | 167 | 2 tasks | 2 files |
 | Phase 04-onboarding P01 | 3 | 2 tasks | 4 files |
+| Phase 04-onboarding P03 | 8 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -104,6 +105,8 @@ Recent decisions affecting current work:
 - [Phase 04-onboarding]: skills-template has zero imports — pure string generator safe to import from postinstall without circular deps
 - [Phase 04-onboarding]: Claude Desktop skipped with skipReason — remote HTTP MCP not supported via claude_desktop_config.json; requires Settings > Connectors UI
 - [Phase 04-onboarding]: Platform registry uses typed PlatformDescriptor array with URL-match idempotency across url/serverUrl/httpUrl fields
+- [Phase 04-onboarding]: setup command uses opts.json || !process.stdout.isTTY toggle consistent with all commands
+- [Phase 04-onboarding]: postinstall writes mainlayer-skills.md via skills-template module; platforms.ts inline skills.md coexists
 
 ### Pending Todos
 
@@ -122,6 +125,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-25T20:50:57.989Z
-Stopped at: Completed 04-onboarding/04-01-PLAN.md
+Last session: 2026-03-26T05:54:36.251Z
+Stopped at: Completed 04-onboarding/04-03-PLAN.md
 Resume file: None
