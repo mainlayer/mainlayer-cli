@@ -379,25 +379,10 @@ export async function configurePlatforms(options: {
         configured = writeJsonPlatform(desc, home, force);
       }
 
-      // Drop skills.md if platform was newly configured
-      let skillsDropped = false;
-      if (configured) {
-        try {
-          const skillsDir = desc.skillsDir(home);
-          if (existsSync(skillsDir)) {
-            const skillsContent = buildSkillsContent();
-            writeFileSync(join(skillsDir, 'skills.md'), skillsContent, 'utf8');
-            skillsDropped = true;
-          }
-        } catch {
-          // Skills drop failure is non-fatal
-        }
-      }
-
       results.push({
         name: desc.name,
         configured,
-        skillsDropped,
+        skillsDropped: false,
         skipped: false,
       });
     } catch (err) {
@@ -412,87 +397,5 @@ export async function configurePlatforms(options: {
   }
 
   return results;
-}
-
-function buildSkillsContent(): string {
-  return `# Mainlayer CLI — Agent Skills Guide
-
-## Setup
-
-Set required environment variables:
-
-\`\`\`bash
-export MAINLAYER_API_KEY=sk_live_...
-export MAINLAYER_WALLET_PASSPHRASE=your-passphrase
-\`\`\`
-
-All commands support \`--json\` for structured output and use semantic exit codes:
-- 0: Success
-- 1: General error
-- 2: Auth error
-- 3: Not found
-- 4: Validation error
-- 5: Payment error
-
-## Vendor Quick-start
-
-\`\`\`bash
-mainlayer auth register --email you@example.com --password secret --json
-mainlayer resource create --name "My API" --description "..." --price 0.01 --json
-mainlayer resource plan create --resource-id <id> --name "Basic" --price 0.01 --json
-mainlayer webhook update --resource-id <id> --url https://your.api/hook --json
-\`\`\`
-
-## Buyer Quick-start
-
-\`\`\`bash
-mainlayer auth register --email you@example.com --password secret --json
-mainlayer wallet create --json
-mainlayer discover --query "weather API" --json
-mainlayer buy <resource-id> --json
-\`\`\`
-
-## Command Reference
-
-### Auth
-- \`mainlayer auth register\` — create account
-- \`mainlayer auth login\` — sign in, stores JWT
-- \`mainlayer auth logout\` — clear session
-- \`mainlayer auth status\` — show current session
-- \`mainlayer auth api-key create/list/revoke\` — manage API keys
-
-### Wallet
-- \`mainlayer wallet create\` — generate encrypted Solana keypair
-- \`mainlayer wallet import\` — import existing keypair
-- \`mainlayer wallet address\` — print public key
-- \`mainlayer wallet balance\` — show SOL + USDC balances
-- \`mainlayer wallet export\` — export private key (requires passphrase)
-
-### Resources (Vendor)
-- \`mainlayer resource create/list/get/update/delete\`
-- \`mainlayer resource plan create/list/update/delete\`
-- \`mainlayer resource quota set/get/delete\`
-
-### Marketplace (Buyer)
-- \`mainlayer discover\` — search available resources
-- \`mainlayer buy <id>\` — purchase access (X402 flow)
-- \`mainlayer entitlements\` — list active access grants
-- \`mainlayer subscribe approve/pause/resume/cancel/list/get\`
-
-### Billing
-- \`mainlayer invoices list/get\`
-- \`mainlayer refund request\`
-- \`mainlayer dispute create/list\`
-- \`mainlayer earnings\`
-- \`mainlayer metrics\`
-
-## Agent Notes
-
-- Use \`--json\` for all commands in headless/CI environments
-- Set \`MAINLAYER_WALLET_PASSPHRASE\` env var to avoid interactive prompts
-- Set \`CI=true\` to suppress spinners and interactive output
-- Auth via \`MAINLAYER_API_KEY\` env var or \`--api-key\` flag
-- MCP server: https://api.mainlayer.io/mcp (add \`MAINLAYER_API_KEY\` to request headers)
-`;
 }
 
