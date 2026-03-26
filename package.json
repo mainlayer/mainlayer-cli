@@ -1,7 +1,6 @@
 {
   "name": "@mainlayer/cli",
-  "version": "0.1.1",
-  "private": true,
+  "version": "0.1.2",
   "description": "Command-line interface to the Mainlayer payment infrastructure",
   "type": "module",
   "bin": {
