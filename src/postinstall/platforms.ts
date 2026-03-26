@@ -19,6 +19,7 @@ export interface PlatformDescriptor {
 export interface PlatformResult {
   name: string;
   configured: boolean;
+  detected: boolean;
   skillsDropped: boolean;
   skipped: boolean;
   error?: string;
@@ -292,7 +293,7 @@ function writeJsonPlatform(
   desc: PlatformDescriptor,
   home: string,
   force: boolean,
-): boolean {
+): { configured: boolean; detected: boolean } {
   // Determine actual config path (handle altConfigPath for Zed)
   let configPath = desc.configPath(home);
   if (!existsSync(configPath) && desc.altConfigPath) {
@@ -300,7 +301,7 @@ function writeJsonPlatform(
   }
 
   // D-08: only configure if file exists
-  if (!existsSync(configPath)) return false;
+  if (!existsSync(configPath)) return { configured: false, detected: false };
 
   let config: Record<string, unknown> = {};
   try {
@@ -313,27 +314,27 @@ function writeJsonPlatform(
 
   // D-13: idempotency — skip if already present and not force mode
   if (!force && hasExistingEntry(servers, MCP_URL)) {
-    return false;
+    return { configured: false, detected: true };
   }
 
   servers['mainlayer'] = desc.buildEntry();
   config[desc.topLevelKey] = servers;
 
   writeFileSync(configPath, JSON.stringify(config, null, 2) + '\n', 'utf8');
-  return true;
+  return { configured: true, detected: true };
 }
 
-function writeContinuePlatform(home: string, force: boolean): boolean {
+function writeContinuePlatform(home: string, force: boolean): { configured: boolean; detected: boolean } {
   // D-08: check if ~/.continue/ directory exists
   const continueDir = join(home, '.continue');
-  if (!existsSync(continueDir)) return false;
+  if (!existsSync(continueDir)) return { configured: false, detected: false };
 
   const mcpServersDir = join(continueDir, 'mcpServers');
   const targetFile = join(mcpServersDir, 'mainlayer.yaml');
 
   // D-13: idempotency — skip if file already exists and not force mode
   if (!force && existsSync(targetFile)) {
-    return false;
+    return { configured: false, detected: true };
   }
 
   mkdirSync(mcpServersDir, { recursive: true });
@@ -347,7 +348,7 @@ mcpServers:
     url: ${MCP_URL}
 `;
   writeFileSync(targetFile, yamlContent, 'utf8');
-  return true;
+  return { configured: true, detected: true };
 }
 
 export async function configurePlatforms(options: {
@@ -363,6 +364,7 @@ export async function configurePlatforms(options: {
       results.push({
         name: desc.name,
         configured: false,
+        detected: false,
         skillsDropped: false,
         skipped: true,
         error: desc.skipReason,
@@ -372,16 +374,18 @@ export async function configurePlatforms(options: {
 
     try {
       let configured = false;
+      let detected = false;
 
       if (desc.format === 'yaml-file') {
-        configured = writeContinuePlatform(home, force);
+        ({ configured, detected } = writeContinuePlatform(home, force));
       } else {
-        configured = writeJsonPlatform(desc, home, force);
+        ({ configured, detected } = writeJsonPlatform(desc, home, force));
       }
 
       results.push({
         name: desc.name,
         configured,
+        detected,
         skillsDropped: false,
         skipped: false,
       });
@@ -389,6 +393,7 @@ export async function configurePlatforms(options: {
       results.push({
         name: desc.name,
         configured: false,
+        detected: false,
         skillsDropped: false,
         skipped: false,
         error: err instanceof Error ? err.message : String(err),

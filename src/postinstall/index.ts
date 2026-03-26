@@ -18,9 +18,9 @@ async function main(): Promise<void> {
       }
     }
 
-    // Drop skills.md for each configured platform using the dedicated template
+    // Drop skills.md for each detected platform (even if MCP was already configured)
     for (const result of results) {
-      if (!result.configured) continue;
+      if (!result.detected) continue;
       const desc = PLATFORMS.find((p) => p.name === result.name);
       if (!desc) continue;
       try {
