@@ -6,15 +6,11 @@
 [![Node.js >=22](https://img.shields.io/badge/node-%3E%3D22-brightgreen)](https://nodejs.org)
 [![License](https://img.shields.io/badge/license-proprietary-lightgrey)](LICENSE)
 
----
-
 ## What is Mainlayer?
 
 Mainlayer is a payment marketplace for the agentic economy. Vendors list APIs, data feeds, and AI services. Buyers — including AI agents — discover and pay for them on-chain using Solana USDC.
 
 The CLI gives you full access to both sides of the marketplace from your terminal. It also works headlessly, so your AI agent can register, pay, and transact without any human in the loop.
-
----
 
 ## Installation
 
@@ -27,8 +23,6 @@ On install, the CLI automatically detects AI platforms on your machine and confi
 ```bash
 mainlayer setup
 ```
-
----
 
 ## Sell a resource in 60 seconds
 
@@ -54,8 +48,6 @@ mainlayer resource create \
 mainlayer webhook update --url https://example.com/webhooks
 ```
 
----
-
 ## Buy a resource in 60 seconds
 
 ```bash
@@ -77,8 +69,6 @@ mainlayer buy <resource-id>
 # Check your active access
 mainlayer entitlements
 ```
-
----
 
 ## Built for AI agents
 
@@ -103,8 +93,6 @@ mainlayer buy res_... --json
 | `4` | Validation error |
 | `5` | Already exists |
 
----
-
 ## Wallet security
 
 Your private key never leaves your machine. It is encrypted with AES-256-GCM and a PBKDF2-derived key (200,000 iterations) and stored at `~/.mainlayer/wallet.json`. The key is only decrypted when a transaction needs to be signed.
@@ -114,8 +102,6 @@ Your private key never leaves your machine. It is encrypted with AES-256-GCM and
 export MAINLAYER_WALLET_PASSPHRASE=your-passphrase
 mainlayer buy <resource-id> --json
 ```
-
----
 
 ## MCP auto-configuration
 
@@ -131,7 +117,7 @@ Installing the CLI automatically adds the Mainlayer MCP server to every AI platf
 - [x] Zed
 - [x] Continue
 - [x] Cline
-- [ ] Claude Desktop — add manually via **Settings > Connectors**, URL: `https://api.mainlayer.io/mcp`
+- [ ] Claude Desktop — add manually via **Settings > Connectors**, URL: `https://api.mainlayer.fr/mcp`
 - [ ] OpenClaw — add manually via `~/.openclaw/openclaw.json`
 
 **Re-run or force-update:**
@@ -141,8 +127,6 @@ mainlayer setup           # Re-detect and configure (skips already-configured)
 mainlayer setup --force   # Overwrite all existing entries
 mainlayer setup --json    # JSON output for programmatic use
 ```
-
----
 
 ## Command reference
 
@@ -169,18 +153,14 @@ mainlayer setup --json    # JSON output for programmatic use
 mainlayer <command> --help   # Full flag docs for any command
 ```
 
----
-
 ## Environment variables
 
 | Variable | Description |
 |----------|-------------|
 | `MAINLAYER_API_KEY` | API key for authentication. Create with `mainlayer auth api-key create` |
 | `MAINLAYER_WALLET_PASSPHRASE` | Wallet passphrase for headless/agent signing |
-| `MAINLAYER_API_URL` | Override API base URL (default: `https://api.mainlayer.io`) |
+| `MAINLAYER_API_URL` | Override API base URL (default: `https://api.mainlayer.fr`) |
 | `MAINLAYER_SOLANA_NETWORK` | Override Solana network (default: `solana:mainnet`) |
-
----
 
 ## License
 
