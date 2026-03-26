@@ -15,6 +15,7 @@ import { subscribeCommand } from './subscribe.js';
 import { invoicesCommand } from './invoices.js';
 import { refundCommand } from './refund.js';
 import { disputeCommand } from './dispute.js';
+import { setupCommand } from './setup.js';
 import { apiClient } from '../services/api-client.js';
 import { printError } from '../utils/output.js';
 import { AppError } from '../utils/errors.js';
@@ -38,7 +39,8 @@ const program = new Command('mainlayer')
   .addCommand(subscribeCommand())
   .addCommand(invoicesCommand())
   .addCommand(refundCommand())
-  .addCommand(disputeCommand());
+  .addCommand(disputeCommand())
+  .addCommand(setupCommand());
 
 // Global hook: propagate --api-key to ApiClient before any subcommand action
 program.hook('preAction', () => {

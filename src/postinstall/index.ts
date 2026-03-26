@@ -1,4 +1,8 @@
-import { configurePlatforms } from './platforms.js';
+import { configurePlatforms, PLATFORMS } from './platforms.js';
+import { generateSkillsMd, SKILLS_FILENAME } from './skills-template.js';
+import { writeFileSync, mkdirSync } from 'node:fs';
+import { join } from 'node:path';
+import { homedir } from 'node:os';
 
 async function main(): Promise<void> {
   try {
@@ -11,6 +15,20 @@ async function main(): Promise<void> {
     for (const s of skipped) {
       if (s.error) {
         process.stderr.write(`${s.name}: ${s.error}\n`);
+      }
+    }
+
+    // Drop skills.md for each configured platform using the dedicated template
+    for (const result of results) {
+      if (!result.configured) continue;
+      const desc = PLATFORMS.find((p) => p.name === result.name);
+      if (!desc) continue;
+      try {
+        const dir = desc.skillsDir(homedir());
+        mkdirSync(dir, { recursive: true });
+        writeFileSync(join(dir, SKILLS_FILENAME), generateSkillsMd(), 'utf8');
+      } catch {
+        // D-12: skills drop failure is non-fatal
       }
     }
 
