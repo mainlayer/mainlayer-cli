@@ -19,6 +19,7 @@ import { disputeCommand } from './dispute.js';
 import { setupCommand } from './setup.js';
 import { apiClient } from '../services/api-client.js';
 import { configService } from '../services/config-service.js';
+import { checkForUpdates } from '../utils/update-check.js';
 import { printError } from '../utils/output.js';
 import { AppError } from '../utils/errors.js';
 
@@ -56,6 +57,7 @@ program.hook('preAction', () => {
   if (profile !== 'default') {
     configService.setProfile(profile);
   }
+  checkForUpdates().catch(() => {});
 });
 
 // Prevent Commander from calling process.exit directly for --help / --version
