@@ -6,10 +6,17 @@ import type { ConfigKey } from '../types/config.js';
 
 export class ConfigService {
   private conf: Conf<MainlayerConfig>;
+  private readonly confCwd: string;
+  private readonly defaultConf: Conf<Record<string, unknown>>;
 
   constructor(cwd?: string) {
+    this.confCwd = cwd ?? join(homedir(), '.mainlayer');
     this.conf = new Conf<MainlayerConfig>({
-      cwd: cwd ?? join(homedir(), '.mainlayer'),
+      cwd: this.confCwd,
+      configName: 'config',
+    });
+    this.defaultConf = new Conf<Record<string, unknown>>({
+      cwd: this.confCwd,
       configName: 'config',
     });
   }
@@ -40,6 +47,38 @@ export class ConfigService {
 
   clear(): void {
     this.conf.clear();
+  }
+
+  /**
+   * Switch the active profile. Reinitializes this.conf to point at
+   * config.<name>.json (or config.json for 'default').
+   */
+  setProfile(name: string): void {
+    const configName = name === 'default' ? 'config' : `config.${name}`;
+    this.conf = new Conf<MainlayerConfig>({
+      cwd: this.confCwd,
+      configName,
+    });
+  }
+
+  /**
+   * Persist the active profile name to the default config.json.
+   * Always writes to the default conf, regardless of what profile is currently active.
+   */
+  setActiveProfile(name: string): void {
+    this.defaultConf.set('activeProfile', name);
+  }
+
+  /**
+   * Returns the active profile name. Reads from MAINLAYER_PROFILE env var first,
+   * then from the default config.json, then defaults to 'default'.
+   */
+  getActiveProfile(): string {
+    return (
+      process.env['MAINLAYER_PROFILE'] ??
+      (this.defaultConf.get('activeProfile') as string | undefined) ??
+      'default'
+    );
   }
 }
 

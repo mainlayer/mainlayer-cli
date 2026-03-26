@@ -9,10 +9,17 @@ export const EXIT_CODES = {
 
 export type ExitCode = (typeof EXIT_CODES)[keyof typeof EXIT_CODES];
 
+export interface AppErrorMeta {
+  type?: string;
+  hint?: string;
+  code?: string;
+}
+
 export class AppError extends Error {
   constructor(
     message: string,
     public readonly exitCode: ExitCode = EXIT_CODES.GENERAL,
+    public readonly meta?: AppErrorMeta,
   ) {
     super(message);
     this.name = 'AppError';
