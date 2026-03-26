@@ -47,11 +47,11 @@ export class ApiClient {
         msg = `HTTP ${err.response.status}`;
       }
       const status = err.response.status;
-      if (status === 401) throw new AppError(msg, EXIT_CODES.AUTH_ERROR);
-      if (status === 404) throw new AppError(msg, EXIT_CODES.NOT_FOUND);
-      if (status === 409) throw new AppError(msg, EXIT_CODES.ALREADY_EXISTS);
-      if (status === 422) throw new AppError(msg, EXIT_CODES.VALIDATION_ERROR);
-      throw new AppError(msg, EXIT_CODES.GENERAL);
+      if (status === 401) throw new AppError(msg, EXIT_CODES.AUTH_ERROR, { type: 'auth_error', hint: 'Run: mainlayer auth login' });
+      if (status === 404) throw new AppError(msg, EXIT_CODES.NOT_FOUND, { type: 'not_found' });
+      if (status === 409) throw new AppError(msg, EXIT_CODES.ALREADY_EXISTS, { type: 'already_exists' });
+      if (status === 422) throw new AppError(msg, EXIT_CODES.VALIDATION_ERROR, { type: 'validation_error' });
+      throw new AppError(msg, EXIT_CODES.GENERAL, { type: 'api_error' });
     }
     throw err;
   }

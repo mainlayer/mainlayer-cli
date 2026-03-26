@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { mkdtempSync, rmSync, existsSync, statSync, writeFileSync, mkdirSync } from 'node:fs';
+import { mkdtempSync, rmSync, existsSync, statSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
@@ -10,7 +10,7 @@ let tmpDir: string;
 let walletPath: string;
 
 import { WalletService } from '../../src/services/wallet-service.js';
-import { AppError, EXIT_CODES } from '../../src/utils/errors.js';
+import { EXIT_CODES } from '../../src/utils/errors.js';
 
 beforeEach(() => {
   tmpDir = mkdtempSync(join(tmpdir(), 'mainlayer-wallet-test-'));

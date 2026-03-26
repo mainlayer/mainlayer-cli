@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { AppError, EXIT_CODES } from '../../src/utils/errors.js';
+import { EXIT_CODES } from '../../src/utils/errors.js';
 
 // Mock ky module
 vi.mock('ky', () => {
@@ -162,20 +162,6 @@ describe('ApiClient', () => {
   });
 
   describe('HTTP error mapping', () => {
-    function makeHttpError(status: number, body: unknown) {
-      const { HTTPError } = vi.mocked(
-        { HTTPError: class HTTPError extends Error {
-            response: { status: number; json: () => Promise<unknown> };
-            constructor(s: number, b: unknown) {
-              super(`HTTP ${s}`);
-              this.response = { status: s, json: () => Promise.resolve(b) };
-            }
-          }
-        }
-      );
-      return new HTTPError(status, body);
-    }
-
     it('should throw AppError with AUTH_ERROR on HTTP 401', async () => {
       const kyMod = await import('ky');
       const { HTTPError: KyHTTPError } = kyMod;

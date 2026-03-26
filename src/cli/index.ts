@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
+import chalk from 'chalk';
 import { authCommand } from './auth.js';
 import { walletCommand } from './wallet.js';
 import { configCommand } from './config.js';
@@ -17,14 +18,17 @@ import { refundCommand } from './refund.js';
 import { disputeCommand } from './dispute.js';
 import { setupCommand } from './setup.js';
 import { apiClient } from '../services/api-client.js';
+import { configService } from '../services/config-service.js';
 import { printError } from '../utils/output.js';
 import { AppError } from '../utils/errors.js';
 
 const program = new Command('mainlayer')
   .description('Mainlayer CLI — AI-native payment infrastructure')
+  .showSuggestionAfterError(true)
   .version('0.1.0', '-v, --version')
   .option('--json', 'Output machine-readable JSON')
   .option('--api-key <key>', 'API key override (also: MAINLAYER_API_KEY env)', process.env['MAINLAYER_API_KEY'])
+  .option('--profile <name>', 'Use named profile for config/auth isolation', process.env['MAINLAYER_PROFILE'])
   .addCommand(authCommand())
   .addCommand(walletCommand())
   .addCommand(configCommand())
@@ -42,11 +46,15 @@ const program = new Command('mainlayer')
   .addCommand(disputeCommand())
   .addCommand(setupCommand());
 
-// Global hook: propagate --api-key to ApiClient before any subcommand action
+// Global hook: propagate --api-key and --profile to services before any subcommand action
 program.hook('preAction', () => {
-  const opts = program.opts<{ json?: boolean; apiKey?: string }>();
+  const opts = program.opts<{ json?: boolean; apiKey?: string; profile?: string }>();
   if (opts.apiKey) {
     apiClient.setApiKeyOverride(opts.apiKey);
+  }
+  const profile = opts.profile ?? configService.getActiveProfile();
+  if (profile !== 'default') {
+    configService.setProfile(profile);
   }
 });
 
@@ -58,7 +66,21 @@ program.exitOverride();
     await program.parseAsync(process.argv);
   } catch (err) {
     if (err instanceof AppError) {
-      printError(err.message);
+      const useJson = process.argv.includes('--json') || !process.stdout.isTTY;
+      if (useJson) {
+        console.log(JSON.stringify({
+          error: true,
+          message: err.message,
+          code: err.exitCode,
+          type: err.meta?.type ?? 'error',
+          hint: err.meta?.hint ?? null,
+        }));
+      } else {
+        printError(err.message);
+        if (err.meta?.hint) {
+          process.stderr.write(chalk.yellow(err.meta.hint) + '\n');
+        }
+      }
       process.exitCode = err.exitCode;
     } else if (
       err instanceof Error &&
