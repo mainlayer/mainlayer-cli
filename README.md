@@ -4,7 +4,15 @@
 
 [![npm version](https://img.shields.io/npm/v/@mainlayer/cli)](https://www.npmjs.com/package/@mainlayer/cli)
 [![Node.js >=22](https://img.shields.io/badge/node-%3E%3D22-brightgreen)](https://nodejs.org)
-[![License](https://img.shields.io/badge/license-proprietary-lightgrey)](LICENSE)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+## Quick Install
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/mainlayer/mainlayer-cli/main/scripts/install.sh | sh
+```
+
+Requires [Node.js >= 22](https://nodejs.org). The script installs the CLI globally via npm and ensures the install directory is in your PATH.
 
 ## What is Mainlayer?
 
@@ -164,4 +172,4 @@ mainlayer <command> --help   # Full flag docs for any command
 
 ## License
 
-Proprietary - see [LICENSE](LICENSE) for details.
+Apache 2.0 - see [LICENSE](LICENSE) for details.
