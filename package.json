@@ -2,6 +2,7 @@
   "name": "@mainlayer/cli",
   "version": "0.1.0",
   "description": "Command-line interface to the Mainlayer payment infrastructure",
+  "private": true,
   "type": "module",
   "bin": {
     "mainlayer": "dist/cli/index.js"
