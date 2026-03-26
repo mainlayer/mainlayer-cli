@@ -419,5 +419,9 @@ When using the Mainlayer MCP server via Claude Code, Cursor, or other AI platfor
 ### Claude Desktop Users
 
 Claude Desktop does **not** support remote HTTP MCP servers via \`claude_desktop_config.json\`. To connect Claude Desktop to the Mainlayer MCP server, use **Settings > Connectors** in the Claude Desktop UI and add: \`https://api.mainlayer.io/mcp\`.
+
+### OpenClaw Users
+
+Add the Mainlayer MCP server manually to \`~/.openclaw/openclaw.json\` using the standard MCP server entry for your OpenClaw version.
 `;
 }
