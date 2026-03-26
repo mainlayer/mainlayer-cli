@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { EXIT_CODES, AppError } from '../../src/utils/errors.js';
+import { EXIT_CODES, AppError, type AppErrorMeta } from '../../src/utils/errors.js';
 
 describe('EXIT_CODES', () => {
   it('SUCCESS is 0', () => {
@@ -51,5 +51,25 @@ describe('AppError', () => {
   it('has name AppError', () => {
     const err = new AppError('test');
     expect(err.name).toBe('AppError');
+  });
+
+  it('stores meta field with type, hint, and code', () => {
+    const meta: AppErrorMeta = { type: 'auth_error', hint: 'Run: mainlayer auth login', code: 'AUTH_001' };
+    const err = new AppError('unauthorized', EXIT_CODES.AUTH_ERROR, meta);
+    expect(err.meta).toEqual(meta);
+    expect(err.meta?.type).toBe('auth_error');
+    expect(err.meta?.hint).toBe('Run: mainlayer auth login');
+    expect(err.meta?.code).toBe('AUTH_001');
+  });
+
+  it('meta is undefined when not provided (backward compatible)', () => {
+    const err = new AppError('no meta');
+    expect(err.meta).toBeUndefined();
+  });
+
+  it('meta is optional in constructor', () => {
+    const err = new AppError('with exit code only', EXIT_CODES.NOT_FOUND);
+    expect(err.exitCode).toBe(EXIT_CODES.NOT_FOUND);
+    expect(err.meta).toBeUndefined();
   });
 });

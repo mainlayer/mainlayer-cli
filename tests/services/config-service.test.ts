@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { mkdtempSync, rmSync } from 'node:fs';
+import { mkdtempSync, rmSync, existsSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
@@ -19,6 +19,7 @@ afterEach(() => {
   rmSync(tmpDir, { recursive: true, force: true });
   // Clean up env vars set during tests
   delete process.env['MAINLAYER_API_URL'];
+  delete process.env['MAINLAYER_PROFILE'];
 });
 
 function makeService() {
@@ -86,6 +87,57 @@ describe('ConfigService', () => {
       svc.set('apiUrl', 'https://config-wins.io');
       process.env['MAINLAYER_API_URL'] = 'https://env-loses.io';
       expect(svc.getApiUrl()).toBe('https://config-wins.io');
+    });
+  });
+
+  describe('setProfile / getActiveProfile / setActiveProfile', () => {
+    it('getActiveProfile returns "default" when no profile set', () => {
+      const svc = new ConfigService(tmpDir);
+      expect(svc.getActiveProfile()).toBe('default');
+    });
+
+    it('getActiveProfile returns MAINLAYER_PROFILE env var when set', () => {
+      const svc = new ConfigService(tmpDir);
+      process.env['MAINLAYER_PROFILE'] = 'staging';
+      expect(svc.getActiveProfile()).toBe('staging');
+    });
+
+    it('setActiveProfile persists activeProfile to default config.json', () => {
+      const svc = new ConfigService(tmpDir);
+      svc.setActiveProfile('staging');
+      // Read a fresh instance to verify persistence
+      const svc2 = new ConfigService(tmpDir);
+      expect(svc2.getActiveProfile()).toBe('staging');
+    });
+
+    it('setProfile("staging") causes get/set to use config.staging.json', () => {
+      const svc = new ConfigService(tmpDir);
+      svc.setProfile('staging');
+      svc.set('jwt', 'staging-token');
+      // Verify staged value is in config.staging.json (not config.json)
+      const stagingFile = join(tmpDir, 'config.staging.json');
+      expect(existsSync(stagingFile)).toBe(true);
+      const contents = JSON.parse(readFileSync(stagingFile, 'utf8')) as Record<string, unknown>;
+      expect(contents['jwt']).toBe('staging-token');
+    });
+
+    it('setProfile("staging") does not write to config.json', () => {
+      const svc = new ConfigService(tmpDir);
+      svc.setProfile('staging');
+      svc.set('jwt', 'staging-only');
+      const defaultSvc = new ConfigService(tmpDir);
+      expect(defaultSvc.get('jwt')).toBeUndefined();
+    });
+
+    it('setProfile("default") reverts to config.json', () => {
+      const svc = new ConfigService(tmpDir);
+      svc.setProfile('staging');
+      svc.set('jwt', 'staging-token');
+      svc.setProfile('default');
+      svc.set('jwt', 'default-token');
+      // Default config should have default-token, not staging-token
+      const defaultSvc = new ConfigService(tmpDir);
+      expect(defaultSvc.get('jwt')).toBe('default-token');
     });
   });
 });
