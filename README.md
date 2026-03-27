@@ -1,6 +1,6 @@
 # @mainlayer/cli
 
-> The official Mainlayer CLI. Sell and buy digital resources on-chain — APIs, data feeds, and AI services — directly from your terminal or AI agent.
+> Payment CLI for AI agents.
 
 [![npm version](https://img.shields.io/npm/v/@mainlayer/cli)](https://www.npmjs.com/package/@mainlayer/cli)
 [![Node.js >=22](https://img.shields.io/badge/node-%3E%3D22-brightgreen)](https://nodejs.org)
@@ -16,9 +16,9 @@ Requires [Node.js >= 22](https://nodejs.org). The script installs the CLI global
 
 ## What is Mainlayer?
 
-Mainlayer is a payment marketplace for the agentic economy. Vendors list APIs, data feeds, and AI services. Buyers — including AI agents — discover and pay for them on-chain using Solana USDC.
+Mainlayer lets AI agents pay for digital resources — APIs, data feeds, AI services — on-chain using Solana USDC.
 
-The CLI gives you full access to both sides of the marketplace from your terminal. It also works headlessly, so your AI agent can register, pay, and transact without any human in the loop.
+The CLI works headlessly so your agent can register, pay, and transact with no human in the loop.
 
 ## Installation
 
@@ -44,7 +44,7 @@ export MAINLAYER_API_KEY=sk_live_...
 export MAINLAYER_WALLET_PASSPHRASE=your-passphrase
 mainlayer wallet create
 
-# List your resource on the marketplace
+# List your resource
 mainlayer resource create \
   --slug my-api \
   --description "My API" \
@@ -68,7 +68,7 @@ export MAINLAYER_API_KEY=sk_live_...
 export MAINLAYER_WALLET_PASSPHRASE=your-passphrase
 mainlayer wallet create
 
-# Browse the marketplace
+# Browse available resources
 mainlayer discover --query "data feeds"
 
 # Purchase (on-chain payment, no intermediary)
@@ -148,7 +148,7 @@ mainlayer setup --json    # JSON output for programmatic use
 | `mainlayer webhook` | Configure webhook URL, view logs, retry deliveries |
 | `mainlayer earnings` | Revenue summary by resource and time period |
 | `mainlayer metrics` | Usage analytics per resource |
-| `mainlayer discover` | Search the marketplace — no auth required |
+| `mainlayer discover` | Search available resources — no auth required |
 | `mainlayer buy` | Purchase a resource via on-chain payment |
 | `mainlayer entitlements` | View your active access grants |
 | `mainlayer subscribe` | Manage subscriptions (approve, pause, resume, cancel) |
