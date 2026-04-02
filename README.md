@@ -1,10 +1,18 @@
-# @mainlayer/cli
+<p align="center">
+  <img src="assets/hero.gif" alt="mainlayer" width="800" />
+</p>
 
-> Payment CLI for AI agents.
+<p align="center">
+  <strong>Payment CLI for AI agents.</strong>
+</p>
 
-[![npm version](https://img.shields.io/npm/v/@mainlayer/cli)](https://www.npmjs.com/package/@mainlayer/cli)
-[![Node.js >=22](https://img.shields.io/badge/node-%3E%3D22-brightgreen)](https://nodejs.org)
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+<p align="center">
+  <a href="https://www.npmjs.com/package/@mainlayer/cli"><img src="https://img.shields.io/npm/v/@mainlayer/cli" alt="npm version" /></a>
+  <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-%3E%3D22-brightgreen" alt="Node.js >=22" /></a>
+  <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License" /></a>
+</p>
+
+---
 
 ## Quick Install
 
@@ -16,9 +24,13 @@ Requires [Node.js >= 22](https://nodejs.org). The script installs the CLI global
 
 ## What is Mainlayer?
 
-Mainlayer lets AI agents pay for digital resources — APIs, data feeds, AI services — on-chain using Solana USDC.
+Mainlayer is the payment infrastructure for the agentic economy. It lets AI agents pay for digital resources — APIs, data feeds, AI services — and settle transactions in real time.
 
 The CLI works headlessly so your agent can register, pay, and transact with no human in the loop.
+
+<p align="center">
+  <img src="assets/flow.gif" alt="How it works" width="700" />
+</p>
 
 ## Installation
 
@@ -31,6 +43,12 @@ On install, the CLI automatically detects AI platforms on your machine and confi
 ```bash
 mainlayer setup
 ```
+
+## Demo
+
+<p align="center">
+  <img src="assets/demo.gif" alt="CLI demo" width="700" />
+</p>
 
 ## Sell a resource in 60 seconds
 
@@ -64,14 +82,14 @@ mainlayer auth register --email you@example.com --password ...
 mainlayer auth api-key create --label "buyer"
 export MAINLAYER_API_KEY=sk_live_...
 
-# Create and fund a wallet (requires SOL + USDC)
+# Create and fund a wallet
 export MAINLAYER_WALLET_PASSPHRASE=your-passphrase
 mainlayer wallet create
 
 # Browse available resources
 mainlayer discover --query "data feeds"
 
-# Purchase (on-chain payment, no intermediary)
+# Purchase — payment settles in real time
 mainlayer buy <resource-id>
 
 # Check your active access
@@ -106,7 +124,7 @@ mainlayer buy res_... --json
 Your private key never leaves your machine. It is encrypted with AES-256-GCM and a PBKDF2-derived key (200,000 iterations) and stored at `~/.mainlayer/wallet.json`. The key is only decrypted when a transaction needs to be signed.
 
 ```bash
-# Headless mode: set passphrase as env var to skip interactive prompt
+# Headless mode — set passphrase as env var to skip interactive prompt
 export MAINLAYER_WALLET_PASSPHRASE=your-passphrase
 mainlayer buy <resource-id> --json
 ```
@@ -149,7 +167,7 @@ mainlayer setup --json    # JSON output for programmatic use
 | `mainlayer earnings` | Revenue summary by resource and time period |
 | `mainlayer metrics` | Usage analytics per resource |
 | `mainlayer discover` | Search available resources — no auth required |
-| `mainlayer buy` | Purchase a resource via on-chain payment |
+| `mainlayer buy` | Purchase a resource — payment settles instantly |
 | `mainlayer entitlements` | View your active access grants |
 | `mainlayer subscribe` | Manage subscriptions (approve, pause, resume, cancel) |
 | `mainlayer invoices` | View invoice history |
@@ -168,7 +186,6 @@ mainlayer <command> --help   # Full flag docs for any command
 | `MAINLAYER_API_KEY` | API key for authentication. Create with `mainlayer auth api-key create` |
 | `MAINLAYER_WALLET_PASSPHRASE` | Wallet passphrase for headless/agent signing |
 | `MAINLAYER_API_URL` | Override API base URL (default: `https://api.mainlayer.fr`) |
-| `MAINLAYER_SOLANA_NETWORK` | Override Solana network (default: `solana:mainnet`) |
 
 ## License
 
